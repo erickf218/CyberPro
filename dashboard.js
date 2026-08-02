@@ -516,7 +516,7 @@ document.getElementById("gauge-prev")
 // CHAT CON IA REAL (Gemini, vía Cloudflare Worker)
 // ============================
 
-const URL_WORKER = "https://empty-meadow-e563.eflores43479.workers.dev";
+const URL_WORKER = "https://cyberpro-ia-v2.eflores43479.workers.dev";
 
 const chatLog = document.getElementById("chat-log");
 const chatInput = document.getElementById("chat-input");
