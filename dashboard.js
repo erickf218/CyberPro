@@ -557,22 +557,50 @@ async function enviarPreguntaChat(){
         datosReales[item.nombre] = valor ? valor + item.unidad : "sin datos";
     });
 
-    try{
+    try {
         const respuesta = await fetch(URL_WORKER, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ pregunta: pregunta, indicadores: datosReales })
         });
 
+        // 1. Validar si la respuesta HTTP tuvo un estado fuera del rango 200-299
+        if (!respuesta.ok) {
+            let textoError = `Error HTTP ${respuesta.status}: ${respuesta.statusText}`;
+            try {
+                const errJson = await respuesta.json();
+                if (errJson.error || errJson.respuesta) {
+                    textoError = errJson.error || errJson.respuesta;
+                }
+            } catch (_) {
+                // Si la respuesta de error no era JSON, leemos el texto
+                const errTexto = await respuesta.text();
+                if (errTexto) textoError = errTexto;
+            }
+            throw new Error(textoError);
+        }
+
         const datos = await respuesta.json();
 
         document.querySelector(".chat-msg.pensando")?.remove();
-        agregarMensajeChat(datos.respuesta || "No pude generar una respuesta.", "sistema");
 
-    } catch(error){
+        // 2. Mostrar la respuesta de la IA o el mensaje de error descriptivo devuelto por el Worker
+        if (datos.respuesta) {
+            agregarMensajeChat(datos.respuesta, "sistema");
+        } else if (datos.error) {
+            agregarMensajeChat(`⚠️ ${datos.error}`, "sistema");
+        } else {
+            agregarMensajeChat("No se recibió contenido en la respuesta de la IA.", "sistema");
+        }
+
+    } catch (error) {
         document.querySelector(".chat-msg.pensando")?.remove();
-        agregarMensajeChat("Hubo un problema al conectar con la IA. Intenta de nuevo.", "sistema");
-        console.error(error);
+        
+        // 3. Imprimir el detalle técnico completo en la consola para depuración
+        console.error("[CyberPro IA Error Detail]:", error);
+
+        // 4. Mostrar al usuario la causa específica del fallo
+        agregarMensajeChat(`⚠️ Error al conectar con la IA: ${error.message}`, "sistema");
     }
 }
 
