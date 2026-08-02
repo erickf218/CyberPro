@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Utilización | CyberProcess</title>
+
+<link rel="stylesheet" href="index.css">
+
+<header class="site-header">
+
+<div class="logo">
+
+<span class="logo-mark">CP</span>
+
+<span class="logo-text">CyberPro</span>
+
+</div>
+
+
+<nav class="site-nav" id="site-nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="blog.html">Blog</a>
+
+<a href="nosotros.html">Nosotros</a>
+
+<a href="contacto.html">Contacto</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn btn-primary btn-small">Ver Dashboard</a>
+
+<button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+<span></span><span></span><span></span>
+</button>
+
+</header>
+
+
+
+<section class="calculator">
+
+
+<h2>Calculadora de Utilización</h2>
+
+
+<p>
+
+La utilización mide qué porcentaje de la capacidad disponible de un proceso o máquina está siendo realmente aprovechado.
+
+</p>
+
+
+
+<div class="formula">
+
+<h3>Fórmula</h3>
+
+<p>
+
+Utilización = (Producción real ÷ Capacidad instalada) × 100
+
+</p>
+
+</div>
+
+
+
+<div class="calculator-box">
+
+
+<label>
+Producción real (unidades)
+</label>
+
+
+<input
+type="number"
+id="produccionReal"
+placeholder="Ej. 800">
+
+
+
+<label>
+Capacidad instalada (unidades)
+</label>
+
+
+<input
+type="number"
+id="capacidad"
+placeholder="Ej. 1000">
+
+
+
+<button id="calcular">
+
+Calcular utilización
+
+</button>
+
+
+
+
+<h3 id="resultado">
+
+Resultado:
+
+</h3>
+
+
+
+<p id="interpretacion">
+
+Esperando cálculo...
+
+</p>
+
+
+
+
+<div class="ejemplo">
+
+<h3>Ejemplo práctico</h3>
+
+
+<p>
+
+Una planta tiene capacidad para producir 1000 unidades, pero actualmente produce 800.
+
+<br><br>
+
+Utilización:
+
+<br>
+
+(800 ÷ 1000) × 100 = 80%
+
+</p>
+
+
+</div>
+
+
+
+<br>
+
+
+<a href="herramientas.html">
+
+<button>
+
+← Volver
+
+</button>
+
+</a>
+
+
+
+</div>
+
+
+</section>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+<script src="utilizacion.js"></script>
+
+
+</body>
+
+</html>

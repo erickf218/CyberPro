@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta | CyberPro</title>
+<link rel="stylesheet" href="login.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="login-screen">
+
+    <!-- PANEL IZQUIERDO — IDENTIDAD -->
+    <aside class="login-brand">
+
+        <div class="brand-top">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">CP</span>
+                <span class="logo-text">CyberPro</span>
+            </a>
+        </div>
+
+        <div class="brand-panel" role="img" aria-label="Panel esquemático de registro">
+            <div class="panel-header">
+                <span class="panel-dot"></span>
+                <span class="panel-label">PANEL_ACCESO // REGISTRO</span>
+            </div>
+
+            <div class="panel-readout">
+                <span class="readout-label">ESTADO</span>
+                <span class="readout-value" id="estado-panel">NUEVA CUENTA</span>
+                <span class="readout-status">Completa tus datos para empezar</span>
+            </div>
+        </div>
+
+        <blockquote class="brand-quote">
+            <p>“Sin instalaciones, sin sensores. Solo tus datos y una recomendación clara.”</p>
+            <cite>— El equipo de CyberPro</cite>
+        </blockquote>
+
+    </aside>
+
+    <!-- PANEL DERECHO — FORMULARIO -->
+    <main class="login-form-panel">
+
+        <div class="login-card">
+
+            <div class="login-tabs">
+                <a href="login.html" class="tab">Iniciar sesión</a>
+                <span class="tab active">Crear cuenta</span>
+            </div>
+
+            <h1>Crea tu cuenta</h1>
+            <p class="form-sub">Empieza a diagnosticar tu operación en minutos.</p>
+
+            <form id="register-form" novalidate>
+
+                <div class="field">
+                    <input type="text" id="nombre" placeholder=" " required autocomplete="name">
+                    <label for="nombre">Nombre completo</label>
+                </div>
+
+                <div class="field">
+                    <input type="email" id="email" placeholder=" " required autocomplete="email">
+                    <label for="email">Correo electrónico</label>
+                </div>
+
+                <div class="field">
+                    <input type="password" id="password" placeholder=" " required autocomplete="new-password" minlength="6">
+                    <label for="password">Contraseña</label>
+                    <button type="button" class="toggle-pass" id="toggle-pass" aria-label="Mostrar contraseña">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="field">
+                    <input type="password" id="password2" placeholder=" " required autocomplete="new-password" minlength="6">
+                    <label for="password2">Confirmar contraseña</label>
+                    <button type="button" class="toggle-pass" id="toggle-pass2" aria-label="Mostrar contraseña">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="field-row">
+                    <label class="checkbox">
+                        <input type="checkbox" id="terminos" required>
+                        <span>Acepto los términos y condiciones</span>
+                    </label>
+                </div>
+
+                <p class="form-error" id="form-error"></p>
+
+                <button type="submit" class="btn-submit">Crear cuenta</button>
+
+            </form>
+
+            <p class="switch-line">
+                <span>¿Ya tienes cuenta?</span>
+                <a href="login.html" class="link-strong">Inicia sesión</a>
+            </p>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="register.js"></script>
+</body>
+</html>

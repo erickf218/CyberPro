@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>OEE | CyberProcess</title>
+
+<link rel="stylesheet" href="index.css">
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+<div class="logo">
+
+<span class="logo-mark">CP</span>
+
+<span class="logo-text">CyberPro</span>
+
+</div>
+
+
+<nav class="site-nav" id="site-nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="blog.html">Blog</a>
+
+<a href="nosotros.html">Nosotros</a>
+
+<a href="contacto.html">Contacto</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn btn-primary btn-small">Ver Dashboard</a>
+
+<button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+<span></span><span></span><span></span>
+</button>
+
+</header>
+
+
+<section class="calculator">
+
+
+<h2>
+
+Calculadora OEE
+
+</h2>
+
+
+<p>
+
+Calcula la eficiencia global de un equipo de producción.
+
+</p>
+
+
+<div class="calculator-box">
+
+
+<label>
+Disponibilidad (%)
+</label>
+
+
+<input 
+type="number"
+id="disponibilidad"
+placeholder="Ej. 90">
+
+
+<label>
+Rendimiento (%)
+</label>
+
+
+<input 
+type="number"
+id="rendimiento"
+placeholder="Ej. 95">
+
+
+<label>
+Calidad (%)
+</label>
+
+
+<input 
+type="number"
+id="calidad"
+placeholder="Ej. 98">
+
+
+<button id="calcular">
+
+Calcular OEE
+
+</button>
+
+
+<h3 id="resultado">
+
+Resultado:
+
+</h3>
+
+<p id="interpretacion">
+
+    Esperando cálculo...
+
+    </p>
+
+<div class="barra">
+
+    <div id="barra-oee"></div>
+
+    </div>
+
+
+
+<a href="herramientas.html">
+
+    <button>
+
+        ← Volver a Herramientas
+
+    </button>
+
+</a>
+
+</div>
+
+
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+<script src="oee.js"></script>
+
+
+</body>
+
+</html>

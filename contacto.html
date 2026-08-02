@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto | CyberPro</title>
+<link rel="stylesheet" href="index.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="logo">
+        <span class="logo-mark">CP</span>
+        <span class="logo-text">CyberPro</span>
+    </div>
+
+    <nav class="site-nav" id="site-nav">
+        <a href="index.html">Inicio</a>
+        <a href="herramientas.html">Herramientas</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="blog.html">Blog</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+
+    <a href="herramientas.html" class="btn btn-primary btn-small">Empezar gratis</a>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+    </button>
+</header>
+
+<main>
+
+<section class="calculator">
+
+    <h2>Contactanos</h2>
+    <p>¿Tienes un taller, dudas sobre alguna herramienta, o quieres proponer algo? Escríbenos.</p>
+
+    <div class="calculator-box" style="text-align:left;">
+
+        <form action="mailto:hola@cyberpro.com" method="post" enctype="text/plain">
+
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@ejemplo.com" required>
+
+            <label for="mensaje">Mensaje</label>
+            <input type="text" id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte" required>
+
+            <button type="submit">Enviar mensaje</button>
+
+        </form>
+
+        <p style="text-align:center; margin-top:20px; color:var(--muted); font-size:14px;">
+            También puedes escribirnos directo a
+            <a href="mailto:hola@cyberpro.com" style="color:var(--blue);">hola@cyberpro.com</a>
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="footer-top">
+        <div class="logo">
+            <span class="logo-mark">CP</span>
+            <span class="logo-text">CyberPro</span>
+        </div>
+        <nav class="footer-nav">
+            <a href="index.html">Inicio</a>
+            <a href="herramientas.html">Herramientas</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="blog.html">Blog</a>
+            <a href="nosotros.html">Nosotros</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </div>
+    <p class="footer-bottom">© 2026 CyberPro. Herramientas de ingeniería industrial para pymes y talleres.</p>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>

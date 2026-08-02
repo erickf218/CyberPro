@@ -1,0 +1,388 @@
+/* ================================
+   LOGIN — CYBERPRO
+================================ */
+:root{
+    --ink:#0f172a;
+    --muted:#64748b;
+    --bg:#f5f7fb;
+    --white:#ffffff;
+    --blue:#0b5ed7;
+    --blue-dark:#094bb0;
+    --amber:#f59e0b;
+    --line:#e2e8f0;
+    --error:#dc2626;
+
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--ink);
+    min-height:100vh;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size:34px 34px;
+    mask-image:radial-gradient(ellipse at 25% 35%, black 0%, transparent 75%);
+    z-index:0;
+}
+
+/* ================================
+   LAYOUT
+================================ */
+.login-screen{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    min-height:100vh;
+}
+
+/* ================================
+   PANEL IZQUIERDO
+================================ */
+.login-brand{
+    position:relative;
+    z-index:1;
+    color:white;
+    padding:48px 60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.brand-top{ position:relative; z-index:1; }
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:white;
+    width:fit-content;
+}
+
+.logo-mark{
+    font-family:var(--font-mono);
+    font-weight:600;
+    background:var(--blue);
+    color:white;
+    padding:6px 9px;
+    border-radius:6px;
+    font-size:14px;
+}
+
+.logo-text{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:20px;
+}
+
+/* PANEL ESQUEMÁTICO */
+.brand-panel{
+    position:relative;
+    z-index:1;
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:20px;
+    padding:30px;
+    max-width:340px;
+    margin:0 auto;
+}
+
+.panel-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.panel-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 8px var(--amber);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{ opacity:1; }
+    50%{ opacity:.4; }
+}
+
+.panel-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    color:#94a3b8;
+}
+
+.panel-readout{
+    border-top:1px solid #334155;
+    padding-top:16px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.readout-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:#94a3b8;
+    letter-spacing:.06em;
+}
+
+.readout-value{
+    font-family:var(--font-mono);
+    font-size:20px;
+    font-weight:600;
+    color:var(--amber);
+    transition:color .3s;
+}
+
+.readout-value.ok{ color:#4ade80; }
+
+.readout-status{
+    font-size:13px;
+    color:#cbd5e1;
+}
+
+.brand-quote{
+    position:relative;
+    z-index:1;
+    max-width:420px;
+}
+
+.brand-quote p{
+    font-family:var(--font-display);
+    font-size:19px;
+    line-height:1.5;
+    margin-bottom:12px;
+}
+
+.brand-quote cite{
+    font-size:13px;
+    color:#94a3b8;
+    font-style:normal;
+}
+
+/* ================================
+   PANEL DERECHO — FORMULARIO
+================================ */
+.login-form-panel{
+    position:relative;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px;
+}
+
+.login-card{
+    width:100%;
+    max-width:400px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+    border:1px solid rgba(255,255,255,.5);
+    border-radius:22px;
+    padding:40px 36px;
+    box-shadow:0 30px 70px rgba(0,0,0,.35);
+}
+
+.login-tabs{
+    display:flex;
+    background:var(--bg);
+    border-radius:12px;
+    padding:5px;
+    margin-bottom:36px;
+}
+
+.tab{
+    flex:1;
+    border:none;
+    background:transparent;
+    padding:11px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:14px;
+    color:var(--muted);
+    border-radius:9px;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+    transition:.2s;
+}
+
+.tab.active{
+    background:var(--white);
+    color:var(--ink);
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.login-card h1{
+    font-family:var(--font-display);
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.form-sub{
+    color:var(--muted);
+    font-size:15px;
+    margin-bottom:32px;
+}
+
+/* CAMPOS FLOTANTES */
+.field{
+    position:relative;
+    margin-bottom:22px;
+}
+
+.field input{
+    width:100%;
+    padding:18px 16px 8px;
+    border:1.5px solid var(--line);
+    border-radius:12px;
+    font-size:15px;
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--ink);
+    transition:.2s;
+}
+
+.field input:focus{
+    outline:none;
+    border-color:var(--blue);
+    background:white;
+}
+
+.field label{
+    position:absolute;
+    left:16px;
+    top:18px;
+    font-size:15px;
+    color:var(--muted);
+    pointer-events:none;
+    transition:.15s ease;
+}
+
+.field input:focus + label,
+.field input:not(:placeholder-shown) + label{
+    top:7px;
+    font-size:11px;
+    color:var(--blue);
+    font-weight:600;
+}
+
+.toggle-pass{
+    position:absolute;
+    right:14px;
+    top:14px;
+    background:none;
+    border:none;
+    color:var(--muted);
+    cursor:pointer;
+    padding:4px;
+    display:flex;
+}
+
+.toggle-pass:hover{ color:var(--blue); }
+
+.field-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:26px;
+    font-size:13.5px;
+}
+
+.checkbox{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--muted);
+    cursor:pointer;
+    user-select:none;
+}
+
+.checkbox input{ accent-color:var(--blue); width:16px; height:16px; }
+
+.link-muted{
+    color:var(--blue);
+    text-decoration:none;
+}
+
+.link-muted:hover{ text-decoration:underline; }
+
+.form-error{
+    color:var(--error);
+    font-size:13.5px;
+    margin-bottom:14px;
+    min-height:0;
+    display:none;
+}
+
+.form-error.show{ display:block; }
+
+.btn-submit{
+    width:100%;
+    background:var(--blue);
+    color:white;
+    border:none;
+    padding:16px;
+    font-size:16px;
+    font-weight:600;
+    font-family:var(--font-body);
+    border-radius:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-submit:hover{
+    background:var(--blue-dark);
+    transform:translateY(-1px);
+}
+
+.btn-submit:active{ transform:translateY(0); }
+
+.switch-line{
+    text-align:center;
+    margin-top:26px;
+    font-size:14.5px;
+    color:var(--muted);
+}
+
+.link-strong{
+    background:none;
+    border:none;
+    color:var(--blue);
+    font-weight:600;
+    cursor:pointer;
+    font-size:14.5px;
+    font-family:var(--font-body);
+    text-decoration:none;
+}
+
+.link-strong:hover{ text-decoration:underline; }
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px){
+    .login-screen{ grid-template-columns:1fr; }
+    .login-brand{ display:none; }
+    .login-form-panel{ padding:24px; min-height:100vh; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+}

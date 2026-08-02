@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tiempo de Ciclo | CyberProcess</title>
+
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="logo">
+
+<span class="logo-mark">CP</span>
+
+<span class="logo-text">CyberPro</span>
+
+</div>
+
+
+<nav class="site-nav" id="site-nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="blog.html">Blog</a>
+
+<a href="nosotros.html">Nosotros</a>
+
+<a href="contacto.html">Contacto</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn btn-primary btn-small">Ver Dashboard</a>
+
+<button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+<span></span><span></span><span></span>
+</button>
+
+</header>
+
+<section class="calculator">
+
+<h2>Calculadora de Tiempo de Ciclo</h2>
+
+<p>
+
+Calcula el tiempo promedio que tarda en producirse una pieza.
+
+</p>
+
+<div class="calculator-box">
+
+<label>Tiempo total de producción (minutos)</label>
+
+<input
+type="number"
+id="tiempo"
+placeholder="Ej. 480">
+
+<label>Cantidad de piezas producidas</label>
+
+<input
+type="number"
+id="piezas"
+placeholder="Ej. 240">
+
+<button id="calcular">
+
+Calcular
+
+</button>
+
+<h3 id="resultado">
+
+Resultado:
+
+</h3>
+
+<p id="interpretacion">
+    Esperando cálculo...
+</p>
+
+<a href="herramientas.html">
+
+    <button>
+
+        ← Volver a Herramientas
+
+    </button>
+
+</a>
+
+</div>
+
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+<script src="script.js"></script>
+
+</body>
+
+</html>

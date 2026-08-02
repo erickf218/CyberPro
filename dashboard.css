@@ -1,0 +1,834 @@
+/* ========================= */
+/* DASHBOARD CYBERPROCESS */
+/* ========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+
+background:#f5f7fb;
+
+color:#222;
+
+}
+
+/* ========================= */
+
+header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px 60px;
+
+background:white;
+
+box-shadow:0 2px 15px rgba(0,0,0,.08);
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo img{
+
+height:50px;
+
+}
+
+nav{
+
+display:flex;
+
+gap:25px;
+
+}
+
+nav a{
+
+text-decoration:none;
+
+font-weight:bold;
+
+color:#222;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#0b5ed7;
+
+}
+
+/* ========================= */
+
+.hero-dashboard{
+
+text-align:center;
+
+padding:60px 20px;
+
+}
+
+.hero-dashboard h2{
+
+font-size:40px;
+
+margin-bottom:15px;
+
+color:#0b5ed7;
+
+}
+
+.hero-dashboard p{
+
+font-size:18px;
+
+color:#666;
+
+}
+
+/* ========================= */
+
+.dashboard-grid{
+
+width:90%;
+
+margin:auto;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:25px;
+
+padding-bottom:60px;
+
+}
+
+/* ========================= */
+
+.dashboard-card{
+
+background:white;
+
+border-radius:18px;
+
+padding:30px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+cursor:pointer;
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.dashboard-card h3{
+
+font-size:20px;
+
+margin-bottom:20px;
+
+color:#555;
+
+}
+
+.dashboard-card h1{
+
+font-size:42px;
+
+margin-bottom:15px;
+
+color:#0b5ed7;
+
+}
+
+.estado{
+
+font-weight:bold;
+
+color:#888;
+
+}
+
+/* ========================= */
+
+.resumen{
+
+width:90%;
+
+margin:50px auto;
+
+text-align:center;
+
+}
+
+.resumen h2{
+
+margin-bottom:20px;
+
+font-size:34px;
+
+}
+
+.estado-general{
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+font-size:26px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* ========================= */
+
+.acciones{
+
+text-align:center;
+
+padding:40px;
+
+}
+
+button{
+
+background:#0b5ed7;
+
+color:white;
+
+border:none;
+
+padding:15px 35px;
+
+font-size:18px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#094bb0;
+
+transform:scale(1.05);
+
+}
+
+/* ========================= */
+/* BOTÓN LIMPIAR DASHBOARD */
+/* ========================= */
+
+#btn-limpiar{
+
+    margin-top:25px;
+
+    background:#474c66d7;
+
+}
+
+#btn-limpiar:hover{
+
+    background:#b02a37;
+
+}
+
+/* ========================= */
+/* KPIs SUPERIORES */
+/* ========================= */
+
+.kpis-superiores{
+
+    width:90%;
+
+    margin:0 auto 50px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+.kpi-box{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.kpi-box h3{
+
+    font-size:16px;
+
+    color:#666;
+
+    margin-bottom:10px;
+
+}
+
+.kpi-box p{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    color:#0b5ed7;
+
+}
+
+/* ========================= */
+/* MEJOR Y PEOR INDICADOR */
+/* ========================= */
+
+.mejor-peor{
+
+    width:90%;
+
+    margin:0 auto 50px auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:25px;
+
+}
+
+.destacado{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.destacado h3{
+
+    font-size:18px;
+
+    color:#555;
+
+    margin-bottom:15px;
+
+}
+
+.destacado p{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#0b5ed7;
+
+}
+
+/* ========================= */
+/* RECOMENDACIONES E HISTORIAL */
+/* ========================= */
+
+.recomendaciones,
+.historial{
+
+    width:90%;
+
+    margin:0 auto 50px auto;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px 40px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.recomendaciones h2,
+.historial h2{
+
+    font-size:26px;
+
+    margin-bottom:20px;
+
+    color:#0b5ed7;
+
+}
+
+.recomendaciones ul,
+.historial ul{
+
+    list-style:none;
+
+}
+
+.recomendaciones li{
+
+    padding:14px 18px;
+
+    margin-bottom:12px;
+
+    background:#f5f7fb;
+
+    border-left:4px solid #0b5ed7;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+}
+
+.historial li{
+
+    padding:10px 18px;
+
+    border-bottom:1px solid #eee;
+
+    font-size:15px;
+
+    color:#555;
+}
+
+.historial li:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ========================= */
+/* USUARIO / SESIÓN */
+/* ========================= */
+
+.usuario-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+}
+
+#usuario-nombre{
+
+    font-size:14px;
+
+    color:#555;
+
+    font-weight:600;
+
+}
+
+#btn-logout{
+
+    background:transparent;
+
+    border:1.5px solid #0b5ed7;
+
+    color:#0b5ed7;
+
+    padding:8px 18px;
+
+    font-size:14px;
+
+    border-radius:8px;
+
+}
+
+#btn-logout:hover{
+
+    background:#0b5ed7;
+
+    color:white;
+
+}
+
+/* ========================= */
+/* FILAS PAREJAS (tabla+historial, gauge+gráfica) */
+/* ========================= */
+
+.fila-parejo{
+
+    width:90%;
+
+    margin:0 auto 20px auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    align-items:stretch;
+
+}
+
+.fila-parejo .dashboard-card,
+.fila-parejo .tabla-indicadores-wrap,
+.fila-parejo .carrusel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+    min-height:320px;
+
+    cursor:default;
+
+}
+
+.fila-parejo .carrusel-header{
+
+    margin-bottom:12px;
+
+}
+
+.fila-parejo .historial-carrusel{
+
+    flex:1;
+
+    max-height:none;
+
+}
+
+.gauge-card{
+
+    text-align:center;
+
+    justify-content:center;
+
+}
+
+.gauge-svg{ width:100%; max-width:200px; margin:0 auto; }
+
+.gauge-value{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#0b5ed7;
+
+    margin-top:-25px;
+
+}
+
+.chart-card .chart-wrap{
+
+    flex:1;
+
+    min-height:220px;
+
+    position:relative;
+
+}
+
+@media (max-width:900px){
+    .fila-parejo{ grid-template-columns:1fr; }
+}
+
+/* ========================= */
+/* CHAT CON TUS DATOS */
+/* ========================= */
+
+.chat-section{
+
+    width:90%;
+
+    margin:0 auto 50px auto;
+
+}
+
+.chat-nota{
+
+    font-size:13px;
+
+    color:#888;
+
+    margin-bottom:14px;
+
+}
+
+.chat-log{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    max-height:200px;
+
+    overflow-y:auto;
+
+    margin-bottom:14px;
+
+    padding:10px;
+
+    background:#f5f7fb;
+
+    border-radius:10px;
+
+}
+
+.chat-msg{
+
+    padding:8px 14px;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    max-width:80%;
+
+}
+
+.chat-msg.usuario{
+
+    align-self:flex-end;
+
+    background:#0b5ed7;
+
+    color:white;
+
+}
+
+.chat-msg.sistema{
+
+    align-self:flex-start;
+
+    background:white;
+
+    color:#222;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
+
+}
+
+.chat-input-row{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.chat-input-row input{
+
+    flex:1;
+
+    padding:12px 16px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    font-size:14px;
+
+}
+
+.chat-input-row button{
+
+    padding:12px 22px;
+
+}
+
+/* ========================= */
+/* TABLA DE INDICADORES */
+/* ========================= */
+
+.tabla-indicadores-wrap{ width:100%; }
+
+.tabla-indicadores{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    font-size:14px;
+
+}
+
+.tabla-indicadores td{
+
+    padding:10px 6px;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.tabla-indicadores tr:last-child td{ border-bottom:none; }
+
+.valor-tabla{
+
+    text-align:right;
+
+    font-weight:bold;
+
+    color:#0b5ed7;
+
+}
+
+/* ========================= */
+/* CARRUSELES */
+/* ========================= */
+
+.carrusel-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:12px;
+
+}
+
+.carrusel-header h3{ margin:0; font-size:18px; }
+
+.carrusel-flecha{
+
+    background:#f5f7fb;
+
+    border:1px solid #ddd;
+
+    color:#0b5ed7;
+
+    width:36px;
+
+    height:36px;
+
+    border-radius:50%;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    padding:0;
+
+    line-height:1;
+
+    transition:.2s;
+
+}
+
+.carrusel-flecha:hover{
+
+    background:#0b5ed7;
+
+    color:white;
+
+}
+
+.historial-carrusel{
+
+    list-style:none;
+
+    max-height:200px;
+
+    overflow-y:auto;
+
+}
+
+.historial-carrusel li{
+
+    padding:8px 4px;
+
+    border-bottom:1px solid #f0f0f0;
+
+    font-size:14px;
+
+    color:#555;
+
+}
+
+.historial-carrusel li:last-child{ border-bottom:none; }
+
+.carrusel-header-centrado{
+
+    justify-content:center;
+
+    width:90%;
+
+    margin:14px auto 0;
+
+}
+
+.carrusel-hint{
+
+    font-size:13px;
+
+    color:#888;
+
+}
+
+/* ========================= */
+/* PUNTO DE COLOR EN LA TABLA */
+/* ========================= */
+
+.punto-estado{
+
+    display:inline-block;
+
+    width:9px;
+
+    height:9px;
+
+    border-radius:50%;
+
+    margin-right:8px;
+
+}

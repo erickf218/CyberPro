@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Capacidad Instalada | CyberProcess</title>
+
+<link rel="stylesheet" href="index.css">
+
+<header class="site-header">
+
+<div class="logo">
+
+<span class="logo-mark">CP</span>
+
+<span class="logo-text">CyberPro</span>
+
+</div>
+
+
+<nav class="site-nav" id="site-nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="blog.html">Blog</a>
+
+<a href="nosotros.html">Nosotros</a>
+
+<a href="contacto.html">Contacto</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn btn-primary btn-small">Ver Dashboard</a>
+
+<button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+<span></span><span></span><span></span>
+</button>
+
+</header>
+
+
+
+<section class="calculator">
+
+
+<h2>Calculadora de Capacidad Instalada</h2>
+
+
+<p>
+
+La capacidad instalada representa la cantidad máxima de producción que puede alcanzar una máquina, línea o planta bajo condiciones ideales.
+
+</p>
+
+
+<div class="formula">
+
+<h3>Fórmula</h3>
+
+<p>
+
+Capacidad Instalada = Horas disponibles × Producción por hora
+
+</p>
+
+</div>
+
+
+
+<div class="calculator-box">
+
+
+<label>
+Horas disponibles
+</label>
+
+
+<input 
+type="number"
+id="horas"
+placeholder="Ej. 8">
+
+
+
+<label>
+Producción por hora (unidades)
+</label>
+
+
+<input
+type="number"
+id="produccion"
+placeholder="Ej. 50">
+
+
+
+<button id="calcular">
+
+Calcular capacidad
+
+</button>
+
+
+
+<h3 id="resultado">
+
+Resultado:
+
+</h3>
+
+
+
+<p id="interpretacion">
+
+Esperando cálculo...
+
+</p>
+
+
+
+<div class="ejemplo">
+
+<h3>Ejemplo práctico</h3>
+
+
+<p>
+
+Una máquina trabaja 8 horas al día y produce 50 piezas por hora.
+
+<br><br>
+
+Capacidad instalada:
+
+<br>
+
+8 × 50 = 400 piezas por día.
+
+</p>
+
+
+</div>
+
+
+<br>
+
+
+<a href="herramientas.html">
+
+<button>
+
+← Volver
+
+</button>
+
+</a>
+
+
+
+</div>
+
+
+</section>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+<script src="capacidad.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lead Time | CyberProcess</title>
+
+    <link rel="stylesheet" href="index.css">
+
+<header class="site-header">
+
+<div class="logo">
+
+<span class="logo-mark">CP</span>
+
+<span class="logo-text">CyberPro</span>
+
+</div>
+
+
+<nav class="site-nav" id="site-nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="blog.html">Blog</a>
+
+<a href="nosotros.html">Nosotros</a>
+
+<a href="contacto.html">Contacto</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn btn-primary btn-small">Ver Dashboard</a>
+
+<button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+<span></span><span></span><span></span>
+</button>
+
+</header>
+
+<section class="calculator">
+
+<h2>Calcula tu Lead Time</h2>
+
+<p>
+
+Calcula el tiempo promedio que tarda un proceso durante todas las etapas.
+
+</p>
+
+<div class="calculator-box">
+
+<label>Tiempo de espera (horas)</label>
+
+<input
+type="number"
+id="espera"
+placeholder="Ej. 24">
+
+<label>Tiempo de procesamiento (horas)</label>
+
+<input
+type="number"
+id="procesamiento"
+placeholder="Ej. 8">
+
+<button id="calcular">
+
+Calcular
+
+</button>
+
+<h3 id="resultado">
+
+Resultado:
+
+</h3>
+
+<a href="herramientas.html">
+
+    <button>
+
+        ← Volver a Herramientas
+
+    </button>
+
+</a>
+
+</div>
+
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+<script src="lead-time.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,599 @@
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* CUERPO */
+
+body{
+
+    background:#000000;
+
+    color:rgb(231, 241, 241);
+
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+/* HEADER */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px 70px;
+
+}
+
+/* LOGO */
+
+header h1{
+
+    color:#38BDF8;
+
+    font-size:50px;
+
+}
+
+/* MENÚ */
+
+nav{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:0.3s;
+
+}
+
+nav a:hover{
+
+    color:#38BDF8;
+
+}
+
+/* HERO */
+
+#inicio{
+
+    text-align:center;
+
+    padding:140px 80px;
+
+    font-size:35px;
+
+}
+
+#inicio h2{
+
+    font-size:55px;
+
+    margin-bottom:20px;
+
+}
+
+#inicio p{
+
+    font-size:22px;
+
+    color:#CBD5E1;
+
+    margin-bottom:40px;
+
+}
+
+/* BOTÓN */
+
+button{
+
+    background:#38BDF8;
+
+    color:white;
+
+    border:none;
+
+    padding:18px 40px;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+}
+
+button:hover{
+
+    background:#0EA5E9;
+
+}
+/* HERRAMIENTAS */
+
+#herramientas{
+
+    padding:100px;
+
+    text-align:center;
+
+}
+
+#herramientas h2{
+
+    font-size:40px;
+
+    margin-bottom:60px;
+
+}
+
+/* CONTENEDOR DE TARJETAS */
+
+.cards{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
+}
+
+/* TARJETA */
+
+.card{
+
+    background:#1E293B;
+
+    width:320px;
+
+    padding:35px;
+
+    border-radius:15px;
+
+    transition:0.3s;
+
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 35px rgba(56,189,248,.4);
+
+}
+
+.card h3{
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+.card p{
+
+    color:#CBD5E1;
+
+    margin-bottom:30px;
+
+}
+.logo img{
+
+    width:250px;
+
+    height:200px;
+
+    object-fit:contain;
+
+}
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+.secondary-button{
+
+    background:transparent;
+
+    border:2px solid #38BDF8;
+
+    color:#38BDF8;
+
+}
+
+.secondary-button:hover{
+
+    background:#38BDF8;
+
+    color:white;
+
+}
+.card ul{
+
+    text-align:left;
+
+    margin:25px 0;
+
+    padding-left:20px;
+
+}
+
+.card li{
+
+    margin-bottom:12px;
+
+}
+/* ===========================
+   CALCULADORAS
+=========================== */
+
+.calculator{
+
+    text-align:center;
+
+    padding:80px 20px;
+
+}
+
+.calculator h2{
+
+    font-size:42px;
+
+    margin-bottom:15px;
+
+}
+
+.calculator p{
+
+    color:#CBD5E1;
+
+    margin-bottom:40px;
+
+}
+
+.calculator-box{
+
+    max-width:600px;
+
+    margin:auto;
+
+    background:#1E293B;
+
+    padding:40px;
+
+    border-radius:15px;
+
+    box-shadow:0 0 20px rgba(0,0,0,.35);
+
+}
+
+.calculator-box label{
+
+    display:block;
+
+    text-align:left;
+
+    margin-top:20px;
+
+    margin-bottom:8px;
+
+}
+
+.calculator-box input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+.calculator-box button{
+
+    margin-top:25px;
+
+    width:100%;
+
+}
+
+#resultado{
+    margin-top:35px;
+    color:#38BDF8;
+}
+
+    .barra{
+    width:100%;
+    height:25px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+#barra-oee{
+    height:100%;
+    width:0%;
+    background:#38BDF8;
+    transition:width .6s;
+}
+
+.hero-modulo{
+
+text-align:center;
+
+padding:60px 20px;
+
+background:#1E293B;
+
+border-radius:15px;
+
+margin-bottom:40px;
+
+}
+
+
+
+.hero-modulo h1{
+
+font-size:42px;
+
+margin-bottom:15px;
+
+color:#ffffff;
+
+}
+
+
+
+.hero-modulo p{
+
+font-size:18px;
+
+max-width:800px;
+
+margin:auto;
+
+color:#ffffff;
+
+line-height:1.7;
+
+}
+
+
+
+.info-modulo{
+
+background:#1E293B;
+
+padding:30px;
+
+border-radius:15px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+margin-bottom:40px;
+
+}
+
+
+
+.info-modulo h2{
+
+margin-bottom:20px;
+
+color:#f0f1f3;
+
+}
+
+
+
+.info-modulo ul{
+
+list-style:none;
+
+padding:0;
+
+}
+
+
+
+.info-modulo li{
+
+padding:10px 0;
+
+font-size:18px;
+
+border-bottom:1px solid #eee;
+
+}
+
+/* ========================= */
+/* ESTADÍSTICAS */
+/* ========================= */
+
+.estadisticas{
+
+display:flex;
+
+justify-content:center;
+
+gap:40px;
+
+padding:60px 20px;
+
+background:#1E293B;
+
+flex-wrap:wrap;
+
+}
+
+.estadistica{
+
+background:rgba(246, 243, 243, 0.852);
+
+padding:30px;
+
+width:220px;
+
+text-align:center;
+
+border-radius:15px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+transition:.3s;
+
+}
+
+.estadistica:hover{
+
+transform:translateY(-8px);
+
+}
+
+.estadistica h2{
+
+font-size:48px;
+
+color:#0b3d91;
+
+margin-bottom:10px;
+
+}
+
+.estadistica p{
+
+font-size:20px;
+
+color:#383434aa;
+
+font-weight:bold;
+
+}
+
+/* ========================= */
+/* BENEFICIOS */
+/* ========================= */
+
+.beneficios{
+
+padding:80px 20px;
+
+text-align:center;
+
+}
+
+.beneficios h2{
+
+font-size:40px;
+
+margin-bottom:15px;
+
+color:#f1f2f3;
+
+}
+
+.beneficios-subtitulo{
+
+max-width:850px;
+
+margin:auto;
+
+margin-bottom:50px;
+
+font-size:18px;
+
+color:#f8f8f8;
+
+line-height:1.7;
+
+}
+
+.beneficios-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+.beneficio-card{
+
+background:rgba(255, 255, 255, 0.861);
+
+padding:35px;
+
+border-radius:18px;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.beneficio-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.beneficio-card h3{
+
+margin-bottom:18px;
+
+color:#0b3d91;
+
+font-size:24px;
+
+}
+
+.beneficio-card p{
+
+color:#000000;
+
+line-height:1.7;
+
+font-size:16px;
+
+}

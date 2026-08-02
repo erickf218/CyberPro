@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | CyberProcess</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<img src="imagenes/logo,3.png" alt="Logo CyberProcess">
+
+<h1>CyberProcess Dashboard</h1>
+
+</div>
+
+<nav>
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</nav>
+
+<div class="usuario-box">
+<span id="usuario-nombre">Cargando...</span>
+<button id="btn-logout">Cerrar sesión</button>
+</div>
+
+</header>
+
+
+
+<section class="hero-dashboard">
+
+<h2>
+
+Dashboard Industrial
+
+</h2>
+
+<p>
+
+Visualiza todos los indicadores de producción, inventarios y manufactura desde un solo lugar.
+
+</p>
+
+<button id="btn-limpiar">Limpiar Dashboard</button>
+
+</section>
+
+
+
+<!-- KPIs SUPERIORES -->
+
+<section class="kpis-superiores">
+
+<div class="kpi-box">
+<h3>Registrados</h3>
+<p id="kpi-total">0 / 10</p>
+</div>
+
+<div class="kpi-box">
+<h3>En buen estado</h3>
+<p id="kpi-verde">0</p>
+</div>
+
+<div class="kpi-box">
+<h3>Aceptables</h3>
+<p id="kpi-amarillo">0</p>
+</div>
+
+<div class="kpi-box">
+<h3>Por mejorar</h3>
+<p id="kpi-rojo">0</p>
+</div>
+
+</section>
+
+
+
+<section class="dashboard-grid">
+
+<!-- PRODUCCIÓN -->
+
+<div class="dashboard-card">
+
+<h3>OEE</h3>
+
+<h1 id="oee">--</h1>
+
+<p class="estado" id="estado-oee">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Lead Time</h3>
+
+<h1 id="leadtime">--</h1>
+
+<p class="estado" id="estado-leadtime">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Tiempo de Ciclo</h3>
+
+<h1 id="ciclo">--</h1>
+
+<p class="estado" id="estado-ciclo">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Takt Time</h3>
+
+<h1 id="takt">--</h1>
+
+<p class="estado" id="estado-takt">Sin datos</p>
+
+</div>
+
+
+
+<!-- INVENTARIOS -->
+
+<div class="dashboard-card">
+
+<h3>EOQ</h3>
+
+<h1 id="eoq">--</h1>
+
+<p class="estado" id="estado-eoq">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Punto de Reorden</h3>
+
+<h1 id="reorden">--</h1>
+
+<p class="estado" id="estado-reorden">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Stock Seguridad</h3>
+
+<h1 id="stock">--</h1>
+
+<p class="estado" id="estado-stock">Sin datos</p>
+
+</div>
+
+
+
+<!-- MANUFACTURA -->
+
+<div class="dashboard-card">
+
+<h3>Capacidad</h3>
+
+<h1 id="capacidad">--</h1>
+
+<p class="estado" id="estado-capacidad">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Utilización</h3>
+
+<h1 id="utilizacion">--</h1>
+
+<p class="estado" id="estado-utilizacion">Sin datos</p>
+
+</div>
+
+
+
+<div class="dashboard-card">
+
+<h3>Eficiencia</h3>
+
+<h1 id="eficiencia">--</h1>
+
+<p class="estado" id="estado-eficiencia">Sin datos</p>
+
+</div>
+
+</section>
+
+
+
+<!-- MEJOR Y PEOR INDICADOR -->
+
+<section class="mejor-peor">
+
+<div class="destacado">
+<h3>Mejor Indicador</h3>
+<p id="mejor-indicador">Sin datos suficientes todavía.</p>
+</div>
+
+<div class="destacado">
+<h3>Peor Indicador</h3>
+<p id="peor-indicador">Sin datos suficientes todavía.</p>
+</div>
+
+</section>
+
+
+
+<section class="resumen">
+
+<h2>
+
+Estado General
+
+</h2>
+
+<div class="estado-general" id="estado-general">
+
+Esperando indicadores...
+
+</div>
+
+</section>
+
+
+
+<!-- FILA 1: TABLA + HISTORIAL -->
+
+<section class="fila-parejo">
+
+<div class="tabla-indicadores-wrap dashboard-card">
+<h3>Indicadores</h3>
+<table class="tabla-indicadores" id="tabla-indicadores"></table>
+</div>
+
+<div class="carrusel dashboard-card">
+<div class="carrusel-header">
+<button class="carrusel-flecha" id="hist-prev">←</button>
+<h3 id="hist-titulo">Historial de OEE</h3>
+<button class="carrusel-flecha" id="hist-next">→</button>
+</div>
+<ul class="historial-carrusel" id="hist-lista">
+<li>Sin actividad registrada todavía.</li>
+</ul>
+</div>
+
+</section>
+
+
+
+<!-- FILA 2: INDICADOR EN VIVO + GRÁFICA -->
+
+<section class="fila-parejo">
+
+<div class="dashboard-card gauge-card">
+<h3 id="gauge-titulo">OEE en vivo</h3>
+<svg viewBox="0 0 200 120" class="gauge-svg" id="gauge-svg">
+<path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#e2e8f0" stroke-width="14" />
+<path id="gauge-arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke-width="14" stroke-dasharray="251" stroke-dashoffset="251" />
+</svg>
+<p class="gauge-value" id="gauge-value">Sin datos</p>
+</div>
+
+<div class="dashboard-card chart-card">
+<h3 id="chart-titulo">Historial de OEE</h3>
+<div class="chart-wrap">
+<canvas id="historyChart" role="img" aria-label="Gráfica del historial del indicador seleccionado">Historial</canvas>
+</div>
+</div>
+
+</section>
+
+<div class="carrusel-header carrusel-header-centrado">
+<button class="carrusel-flecha" id="gauge-prev">←</button>
+<span class="carrusel-hint">Desliza para ver otro indicador en vivo</span>
+<button class="carrusel-flecha" id="gauge-next">→</button>
+</div>
+
+
+
+<!-- CHAT CON TUS DATOS -->
+
+<section class="chat-section dashboard-card">
+<h3>💬 Chat con tus datos</h3>
+<p class="chat-nota">Basado en reglas sobre tus indicadores reales, no es una IA generativa todavía.</p>
+<div class="chat-log" id="chat-log"></div>
+<div class="chat-input-row">
+<input type="text" id="chat-input" placeholder="Ej. ¿cómo va mi OEE?">
+<button id="chat-send">Enviar</button>
+</div>
+</section>
+
+
+
+<!-- RECOMENDACIONES PRIORITARIAS -->
+
+<section class="recomendaciones">
+
+<h2>💡 Recomendaciones Prioritarias</h2>
+
+<ul id="recomendaciones">
+<li>Registra tus indicadores para ver recomendaciones.</li>
+</ul>
+
+</section>
+
+
+
+<!-- HISTORIAL -->
+
+<section class="historial">
+
+<h2>Historial de Actividad</h2>
+
+<ul id="historial">
+<li>Sin actividad registrada todavía.</li>
+</ul>
+
+</section>
+
+
+
+<section class="acciones">
+
+<a href="herramientas.html">
+
+<button>
+
+Volver a Herramientas
+
+</button>
+
+</a>
+
+</section>
+
+
+
+<script src="dashboard.js"></script>
+
+
+</body>
+
+</html>

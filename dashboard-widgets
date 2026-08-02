@@ -1,0 +1,316 @@
+// ============================
+// CyberPro — dashboard-widgets.js
+// Tabla de indicadores, carrusel de historial, carrusel "en vivo" (gauge + gráfica)
+// y chat basado en reglas — todo con datos reales de localStorage
+// ============================
+
+const indicadoresInfo = [
+    { clave: "oee",         nombre: "OEE",                unidad: "%",   esPorcentaje: true },
+    { clave: "leadtime",    nombre: "Lead Time",          unidad: " hrs" },
+    { clave: "ciclo",       nombre: "Tiempo de Ciclo",    unidad: " min" },
+    { clave: "takt",        nombre: "Takt Time",          unidad: " min" },
+    { clave: "eoq",         nombre: "EOQ",                 unidad: " uds" },
+    { clave: "reorden",     nombre: "Punto de Reorden",   unidad: " uds" },
+    { clave: "stock",       nombre: "Stock de Seguridad", unidad: " uds" },
+    { clave: "capacidad",   nombre: "Capacidad",           unidad: " uds" },
+    { clave: "utilizacion", nombre: "Utilización",         unidad: "%",   esPorcentaje: true },
+    { clave: "eficiencia",  nombre: "Eficiencia",          unidad: "%",   esPorcentaje: true }
+];
+
+let histIndex = 0;   // índice actual del carrusel de historial (lista)
+let liveIndex = 0;   // índice actual del carrusel "en vivo" (gauge + gráfica)
+let chartInstance = null;
+
+setTimeout(inicializarWidgets, 700);
+
+function inicializarWidgets(){
+    renderTabla();
+    renderHistCarrusel();
+    renderLiveCarrusel();
+    conectarBotonesCarrusel();
+    inicializarChat();
+    escucharCambiosEnOtrasPestanas();
+}
+
+// ============================
+// TABLA DE INDICADORES
+// ============================
+
+function renderTabla(){
+
+    const tabla = document.getElementById("tabla-indicadores");
+    if(!tabla) return;
+
+    tabla.innerHTML = indicadoresInfo.map(function(item){
+        const valor = localStorage.getItem(item.clave);
+        const texto = valor ? Number(valor).toFixed(item.esPorcentaje ? 1 : 2) + item.unidad : "Sin datos";
+        return "<tr><td>" + item.nombre + "</td><td class='valor-tabla'>" + texto + "</td></tr>";
+    }).join("");
+}
+
+// ============================
+// CARRUSEL 1 — HISTORIAL (lista) DE CADA CALCULADORA
+// ============================
+
+function renderHistCarrusel(){
+
+    const titulo = document.getElementById("hist-titulo");
+    const lista = document.getElementById("hist-lista");
+    if(!titulo || !lista) return;
+
+    const item = indicadoresInfo[histIndex];
+    titulo.innerHTML = "Historial: " + item.nombre;
+
+    const historial = JSON.parse(localStorage.getItem("historial") || "[]");
+    const entradas = historial.filter(function(h){ return h.indicador === item.clave; });
+
+    if(entradas.length === 0){
+        lista.innerHTML = "<li>Sin actividad registrada para " + item.nombre + ".</li>";
+        return;
+    }
+
+    lista.innerHTML = entradas.map(function(h){
+        return "<li>" + h.fecha + " — " + Number(h.valor).toFixed(2) + item.unidad + "</li>";
+    }).join("");
+}
+
+// ============================
+// CARRUSEL 2 — INDICADOR EN VIVO (gauge + gráfica)
+// ============================
+
+function renderLiveCarrusel(){
+
+    const item = indicadoresInfo[liveIndex];
+
+    const gaugeTitulo = document.getElementById("gauge-titulo");
+    const chartTitulo = document.getElementById("chart-titulo");
+    const gaugeValor = document.getElementById("gauge-value");
+    const arco = document.getElementById("gauge-arc");
+    const canvas = document.getElementById("historyChart");
+
+    if(gaugeTitulo) gaugeTitulo.innerHTML = item.nombre + " en vivo";
+    if(chartTitulo) chartTitulo.innerHTML = "Historial de " + item.nombre;
+
+    const valorGuardado = localStorage.getItem(item.clave);
+    const longitudTotal = 251;
+
+    if(!valorGuardado){
+        if(gaugeValor) gaugeValor.innerHTML = "Sin datos";
+        if(arco) arco.setAttribute("stroke-dashoffset", longitudTotal);
+    } else {
+
+        const valor = Number(valorGuardado);
+        if(gaugeValor) gaugeValor.innerHTML = valor.toFixed(item.esPorcentaje ? 1 : 2) + item.unidad;
+
+        if(arco){
+            let color = "#6c757d"; // gris neutro para indicadores sin escala 0-100
+            let offset = longitudTotal * 0.5;
+
+            if(item.esPorcentaje){
+                const valorLimitado = Math.min(valor, 100);
+                offset = longitudTotal - (longitudTotal * valorLimitado / 100);
+                color = valorLimitado >= 85 ? "#198754" : (valorLimitado >= 60 ? "#ffc107" : "#dc3545");
+            }
+
+            arco.style.transition = "stroke-dashoffset 1s ease, stroke .3s ease";
+            arco.style.stroke = color;
+            arco.setAttribute("stroke-dashoffset", offset);
+        }
+    }
+
+    // Gráfica del historial de este indicador específico
+    if(canvas && typeof Chart !== "undefined"){
+
+        if(chartInstance){
+            chartInstance.destroy();
+            chartInstance = null;
+        }
+
+        const historial = JSON.parse(localStorage.getItem("historial") || "[]");
+        const entradas = historial.filter(function(h){ return h.indicador === item.clave; }).reverse();
+
+        const contexto = canvas.getContext("2d");
+        contexto.clearRect(0, 0, canvas.width, canvas.height);
+
+        if(entradas.length === 0){
+            contexto.font = "14px Arial";
+            contexto.fillStyle = "#888";
+            contexto.fillText("Sin historial de " + item.nombre + " todavía.", 10, 100);
+            return;
+        }
+
+        chartInstance = new Chart(canvas, {
+    type: "line",
+    data: {
+        labels: entradas.map(function(h){ return h.fecha; }),
+        datasets: [{
+            label: item.nombre,
+            data: entradas.map(function(h){ return Number(h.valor); }),
+            borderColor: "#38bdf8",              // Azul neón brillante
+            backgroundColor: "rgba(56, 189, 248, 0.15)", // Sombra de relleno semitransparente
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4,                         // Curva suave
+            pointRadius: 0,                       // Oculta puntos estáticos para un diseño limpio
+            pointHoverRadius: 6
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+            y: {
+                grid: { color: "#2c2c2e" },        // Líneas de cuadrícula oscuras
+                ticks: { color: "#8e8e93" },
+                beginAtZero: true
+            },
+            x: {
+                grid: { display: false },
+                ticks: { color: "#8e8e93" }
+            }
+        }
+    }
+});
+    
+}
+
+// ============================
+// BOTONES DE LOS CARRUSELES
+// ============================
+
+function conectarBotonesCarrusel(){
+
+    const total = indicadoresInfo.length;
+
+    const histPrev = document.getElementById("hist-prev");
+    const histNext = document.getElementById("hist-next");
+    const gaugePrev = document.getElementById("gauge-prev");
+    const gaugeNext = document.getElementById("gauge-next");
+
+    if(histPrev) histPrev.addEventListener("click", function(){
+        histIndex = (histIndex - 1 + total) % total;
+        renderHistCarrusel();
+    });
+
+    if(histNext) histNext.addEventListener("click", function(){
+        histIndex = (histIndex + 1) % total;
+        renderHistCarrusel();
+    });
+
+    if(gaugePrev) gaugePrev.addEventListener("click", function(){
+        liveIndex = (liveIndex - 1 + total) % total;
+        renderLiveCarrusel();
+    });
+
+    if(gaugeNext) gaugeNext.addEventListener("click", function(){
+        liveIndex = (liveIndex + 1) % total;
+        renderLiveCarrusel();
+    });
+}
+
+// ============================
+// SINCRONIZACIÓN "EN VIVO" ENTRE PESTAÑAS
+// ============================
+// El evento "storage" se dispara automáticamente cuando OTRA pestaña/ventana
+// del mismo navegador modifica localStorage (por ejemplo, si tienes una
+// calculadora abierta en una pestaña y el dashboard en otra).
+// No se dispara dentro de la misma pestaña que hizo el cambio — eso es
+// una limitación normal del navegador, no un error.
+
+function escucharCambiosEnOtrasPestanas(){
+
+    window.addEventListener("storage", function(evento){
+
+        const clavesRelevantes = indicadoresInfo.map(function(i){ return i.clave; }).concat(["historial"]);
+
+        if(evento.key && clavesRelevantes.indexOf(evento.key) === -1) return;
+
+        renderTabla();
+        renderHistCarrusel();
+        renderLiveCarrusel();
+    });
+}
+
+// ============================
+// CHAT BASADO EN REGLAS (no es una IA generativa)
+// ============================
+
+function inicializarChat(){
+
+    const chatLog = document.getElementById("chat-log");
+    const chatInput = document.getElementById("chat-input");
+    const chatSend = document.getElementById("chat-send");
+
+    if(!chatLog || !chatInput || !chatSend) return;
+
+    agregarMensaje(chatLog, "Hola, pregúntame sobre tu OEE, lead time, stock o eficiencia.", "sistema");
+
+    chatSend.addEventListener("click", function(){
+        procesarPregunta(chatLog, chatInput);
+    });
+
+    chatInput.addEventListener("keydown", function(e){
+        if(e.key === "Enter") procesarPregunta(chatLog, chatInput);
+    });
+}
+
+function procesarPregunta(chatLog, chatInput){
+
+    const pregunta = chatInput.value.trim();
+    if(pregunta === "") return;
+
+    agregarMensaje(chatLog, pregunta, "usuario");
+    chatInput.value = "";
+
+    setTimeout(function(){
+        const respuesta = generarRespuesta(pregunta.toLowerCase());
+        agregarMensaje(chatLog, respuesta, "sistema");
+    }, 500);
+}
+
+function agregarMensaje(chatLog, texto, tipo){
+    const div = document.createElement("div");
+    div.className = "chat-msg " + tipo;
+    div.innerHTML = texto;
+    chatLog.appendChild(div);
+    chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function generarRespuesta(pregunta){
+
+    const oee = localStorage.getItem("oee");
+    const leadtime = localStorage.getItem("leadtime");
+    const stock = localStorage.getItem("stock");
+    const eficiencia = localStorage.getItem("eficiencia");
+    const utilizacion = localStorage.getItem("utilizacion");
+
+    if(pregunta.includes("oee")){
+        return oee
+            ? "Tu OEE actual es " + Number(oee).toFixed(1) + "%. " +
+              (Number(oee) >= 85 ? "Está en un nivel excelente." : "Hay oportunidad de mejora en disponibilidad, rendimiento o calidad.")
+            : "Todavía no has calculado tu OEE.";
+    }
+
+    if(pregunta.includes("lead")){
+        return leadtime ? "Tu Lead Time actual es " + Number(leadtime).toFixed(1) + " horas." : "Todavía no has calculado tu Lead Time.";
+    }
+
+    if(pregunta.includes("stock") || pregunta.includes("inventario")){
+        return stock
+            ? (Number(stock) <= 0
+                ? "Tu Stock de Seguridad es de " + stock + " unidades: existe riesgo de ruptura de inventario."
+                : "Tu Stock de Seguridad es de " + stock + " unidades, con margen razonable.")
+            : "Todavía no has calculado tu Stock de Seguridad.";
+    }
+
+    if(pregunta.includes("eficien")){
+        return eficiencia ? "Tu Eficiencia actual es " + Number(eficiencia).toFixed(1) + "%." : "Todavía no has calculado tu Eficiencia.";
+    }
+
+    if(pregunta.includes("utiliz")){
+        return utilizacion ? "Tu Utilización actual es " + Number(utilizacion).toFixed(1) + "%." : "Todavía no has calculado tu Utilización.";
+    }
+
+    return "Puedo responder sobre OEE, Lead Time, Stock de Seguridad, Utilización o Eficiencia — pregunta por alguno de esos.";
+}

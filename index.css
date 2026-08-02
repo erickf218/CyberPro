@@ -1,0 +1,1051 @@
+/* ================================
+   CYBERPRO — TOKENS
+================================ */
+:root{
+    --ink:#0f172a;
+    --muted:#64748b;
+    --bg:#f5f7fb;
+    --white:#ffffff;
+    --blue:#0b5ed7;
+    --blue-dark:#094bb0;
+    --amber:#f59e0b;
+    --line:#e2e8f0;
+
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.5;
+}
+
+img{ max-width:100%; display:block; }
+
+h1,h2,h3{ font-family:var(--font-display); line-height:1.15; }
+
+.accent{ color:var(--blue); }
+
+.eyebrow{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin-bottom:14px;
+}
+
+/* ================================
+   BOTONES
+================================ */
+.btn{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-weight:600;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:10px;
+    transition:.25s;
+    border:2px solid transparent;
+}
+
+.btn-primary{ background:var(--blue); color:white; }
+.btn-primary:hover{ background:var(--blue-dark); transform:translateY(-2px); }
+
+.btn-ghost{ background:transparent; color:var(--blue); border-color:var(--blue); }
+.btn-ghost:hover{ background:var(--blue); color:white; }
+
+.btn-small{ padding:10px 20px; font-size:14px; }
+.btn-large{ padding:18px 40px; font-size:17px; }
+
+/* ================================
+   HEADER
+================================ */
+.site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 60px;
+    background:var(--white);
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{ display:flex; align-items:center; gap:10px; }
+
+.logo-mark{
+    font-family:var(--font-mono);
+    font-weight:600;
+    background:var(--ink);
+    color:white;
+    padding:6px 9px;
+    border-radius:6px;
+    font-size:14px;
+}
+
+.logo-text{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:20px;
+}
+
+.site-nav{ display:flex; gap:28px; }
+
+.site-nav a{
+    text-decoration:none;
+    color:var(--ink);
+    font-weight:500;
+    font-size:15px;
+    transition:.2s;
+}
+
+.site-nav a:hover{ color:var(--blue); }
+
+.nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+}
+.nav-toggle span{ width:24px; height:2px; background:var(--ink); }
+
+/* ================================
+   HERO
+================================ */
+.hero{
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+    padding:90px 60px;
+    max-width:1400px;
+    margin:0 auto;
+    overflow:hidden;
+}
+
+.hero-grid-bg{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:36px 36px;
+    mask-image:radial-gradient(ellipse at 30% 30%, black 0%, transparent 70%);
+    opacity:.7;
+    z-index:0;
+}
+
+.hero-content{ position:relative; z-index:1; }
+
+.hero h1{
+    font-size:clamp(32px, 4vw, 50px);
+    font-weight:700;
+    margin-bottom:22px;
+    letter-spacing:-.01em;
+}
+
+.hero-sub{
+    font-size:18px;
+    color:var(--muted);
+    max-width:520px;
+    margin-bottom:32px;
+}
+
+.hero-actions{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:40px; }
+
+.hero-facts{
+    display:flex;
+    gap:32px;
+    list-style:none;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--muted);
+}
+
+.hero-facts span{
+    display:block;
+    font-size:24px;
+    color:var(--ink);
+    font-weight:600;
+}
+
+/* HERO PANEL (firma visual) */
+.hero-panel{
+    position:relative;
+    z-index:1;
+    background:var(--ink);
+    border-radius:20px;
+    padding:26px;
+    box-shadow:0 25px 60px rgba(15,23,42,.25);
+}
+
+.panel-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.panel-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--amber);
+    box-shadow:0 0 8px var(--amber);
+}
+
+.panel-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:.06em;
+    color:#94a3b8;
+}
+
+.panel-diagram{ width:100%; height:auto; margin-bottom:10px; }
+
+.panel-line{ stroke:#334155; stroke-width:2; }
+.panel-box{ fill:#1e293b; stroke:#334155; stroke-width:1.5; }
+.panel-box-accent{ fill:#0b5ed7; stroke:#38bdf8; }
+.panel-tag{
+    font-family:var(--font-mono);
+    font-size:8px;
+    fill:#94a3b8;
+    text-anchor:middle;
+}
+.panel-alert{ fill:var(--amber); }
+
+.panel-readout{
+    border-top:1px solid #334155;
+    padding-top:18px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.readout-label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:#94a3b8;
+    letter-spacing:.06em;
+}
+
+.readout-value{
+    font-family:var(--font-mono);
+    font-size:36px;
+    font-weight:600;
+    color:white;
+}
+
+.readout-bar{
+    width:100%; height:8px;
+    background:#1e293b;
+    border-radius:6px;
+    overflow:hidden;
+}
+
+.readout-bar-fill{
+    height:100%; width:0%;
+    background:linear-gradient(90deg, var(--blue), #38bdf8);
+    transition:width 1.4s ease;
+}
+
+.readout-status{
+    font-size:13px;
+    color:#cbd5e1;
+}
+
+/* ================================
+   FRANJA DE DATOS
+================================ */
+.strip{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 60px 90px;
+    text-align:center;
+}
+
+.strip-value{
+    display:block;
+    font-family:var(--font-mono);
+    font-size:32px;
+    font-weight:600;
+    color:var(--blue);
+    margin-bottom:8px;
+}
+
+.strip-label{
+    font-size:13px;
+    color:var(--muted);
+}
+
+/* ================================
+   SECCIONES GENERALES
+================================ */
+.section-head{
+    max-width:640px;
+    margin:0 auto 50px;
+    text-align:center;
+}
+
+.section-head h2{
+    font-size:clamp(26px,3vw,38px);
+    margin-bottom:14px;
+}
+
+.section-sub{ color:var(--muted); font-size:16px; }
+
+/* ================================
+   HERRAMIENTAS
+================================ */
+.tools{ padding:90px 60px; max-width:1300px; margin:0 auto; }
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:22px;
+}
+
+.tool-card{
+    background:var(--white);
+    border-radius:16px;
+    padding:28px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    transition:.25s;
+}
+
+.tool-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+}
+
+.tool-cat{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--blue);
+    letter-spacing:.04em;
+    text-transform:uppercase;
+}
+
+.tool-card h3{ font-size:20px; margin:10px 0 8px; }
+.tool-card p{ font-size:14px; color:var(--muted); }
+
+/* ================================
+   CÓMO FUNCIONA
+================================ */
+.how{ padding:90px 60px; background:var(--white); }
+
+.how-steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:40px;
+    max-width:1100px;
+    margin:0 auto;
+}
+
+.how-num{
+    font-family:var(--font-mono);
+    font-size:14px;
+    color:var(--blue);
+    display:block;
+    margin-bottom:14px;
+}
+
+.how-step h3{ font-size:20px; margin-bottom:10px; }
+.how-step p{ color:var(--muted); font-size:15px; }
+
+/* ================================
+   ABOUT
+================================ */
+.about{ padding:100px 60px; }
+
+.about-content{ max-width:680px; margin:0 auto; text-align:center; }
+
+.about-content h2{ font-size:clamp(24px,3vw,34px); margin-bottom:18px; }
+
+.about-content p{ color:var(--muted); font-size:16px; margin-bottom:28px; }
+
+/* ================================
+   CTA FINAL
+================================ */
+.cta-final{
+    background:var(--ink);
+    color:white;
+    text-align:center;
+    padding:100px 60px;
+}
+
+.cta-final h2{ font-size:clamp(26px,3.5vw,40px); margin-bottom:14px; }
+.cta-final p{ color:#94a3b8; margin-bottom:34px; }
+
+/* ================================
+   FOOTER
+================================ */
+.site-footer{ background:var(--white); padding:50px 60px 30px; }
+
+.footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    max-width:1300px;
+    margin:0 auto 30px;
+}
+
+.footer-nav{ display:flex; gap:22px; flex-wrap:wrap; }
+.footer-nav a{ color:var(--ink); text-decoration:none; font-size:14px; }
+.footer-nav a:hover{ color:var(--blue); }
+
+.footer-bottom{
+    text-align:center;
+    font-size:13px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    padding-top:20px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px){
+    .site-nav{ display:none; }
+    .nav-toggle{ display:flex; }
+    .hero{ grid-template-columns:1fr; padding:60px 24px; }
+    .strip{ grid-template-columns:1fr; padding:30px 24px 60px; }
+    .tools, .how, .about, .cta-final{ padding:70px 24px; }
+    .site-header{ padding:16px 24px; }
+    .footer-top{ flex-direction:column; align-items:flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+}
+
+/* ================================
+   PÁGINA HERRAMIENTAS
+================================ */
+
+.tools-hero{
+    text-align:center;
+    padding:80px 24px 50px;
+    max-width:700px;
+    margin:0 auto;
+}
+
+.tools-hero h1{
+    font-size:clamp(28px, 4vw, 42px);
+    margin-bottom:16px;
+}
+
+.tools-hero p{
+    color:var(--muted);
+    font-size:17px;
+}
+
+/* Leyenda del semáforo */
+.legend{
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+    max-width:800px;
+    margin:0 auto 70px;
+    padding:22px 30px;
+    background:var(--white);
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    color:var(--muted);
+}
+
+.legend-item strong{ color:var(--ink); }
+
+/* Encabezado de categoría dentro del catálogo */
+.category-block{
+    max-width:1300px;
+    margin:0 auto;
+    padding:0 60px 60px;
+}
+
+.category-heading{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:26px;
+}
+
+.category-heading h2{
+    font-size:24px;
+}
+
+.category-heading span{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--muted);
+}
+
+/* Tarjeta de herramienta como enlace completo */
+a.tool-card{
+    text-decoration:none;
+    color:inherit;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+}
+
+a.tool-card .tool-go{
+    margin-top:16px;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--blue);
+    font-weight:600;
+}
+
+@media (max-width: 900px){
+    .category-block{ padding:0 24px 50px; }
+}
+
+/* ================================
+   CALCULADORAS
+================================ */
+
+.calculator{
+    text-align:center;
+    padding:80px 24px;
+    max-width:700px;
+    margin:0 auto;
+}
+
+.calculator h2{
+    font-size:clamp(28px, 4vw, 40px);
+    margin-bottom:12px;
+}
+
+.calculator p{
+    color:var(--muted);
+    margin-bottom:36px;
+}
+
+.calculator-box{
+    max-width:560px;
+    margin:0 auto;
+    background:var(--white);
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    text-align:left;
+}
+
+.calculator-box label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink);
+    margin-top:18px;
+    margin-bottom:8px;
+}
+
+.calculator-box input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    font-size:16px;
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--ink);
+}
+
+.calculator-box input:focus{
+    outline:none;
+    border-color:var(--blue);
+    background:white;
+}
+
+.calculator-box button{
+    margin-top:26px;
+    width:100%;
+    background:var(--blue);
+    color:white;
+    border:none;
+    padding:15px;
+    font-size:16px;
+    font-weight:600;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.calculator-box button:hover{
+    background:var(--blue-dark);
+}
+
+#resultado{
+    margin-top:30px;
+    font-family:var(--font-mono);
+    font-size:22px;
+    color:var(--blue);
+    text-align:center;
+}
+
+#interpretacion{
+    margin-top:10px;
+    font-size:15px;
+    color:var(--muted);
+    text-align:center;
+}
+
+.barra{
+    width:100%;
+    height:14px;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:22px;
+}
+
+#barra-oee{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--blue), #38bdf8);
+    transition:width .6s;
+}
+
+/* ================================
+   PÁGINAS DE CATEGORÍA
+   (Producción / Inventarios / Manufactura)
+================================ */
+
+.hero-modulo{
+    text-align:center;
+    padding:70px 24px;
+    background:var(--white);
+    border-radius:20px;
+    max-width:1100px;
+    margin:40px auto;
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.hero-modulo h1{
+    font-family:var(--font-display);
+    font-size:clamp(28px, 4vw, 42px);
+    margin-bottom:14px;
+    color:var(--ink);
+}
+
+.hero-modulo p{
+    font-size:17px;
+    max-width:750px;
+    margin:0 auto;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.info-modulo{
+    background:var(--white);
+    padding:35px 40px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    max-width:1100px;
+    margin:0 auto 40px;
+}
+
+.info-modulo h2{
+    margin-bottom:18px;
+    color:var(--ink);
+    font-size:24px;
+}
+
+.info-modulo ul{
+    list-style:none;
+    padding:0;
+}
+
+.info-modulo li{
+    padding:12px 0;
+    font-size:16px;
+    color:var(--muted);
+    border-bottom:1px solid var(--line);
+}
+
+.info-modulo li:last-child{
+    border-bottom:none;
+}
+
+/* ================================
+   ESTADÍSTICAS
+================================ */
+
+.estadisticas{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    padding:50px 24px;
+    flex-wrap:wrap;
+    max-width:1100px;
+    margin:0 auto;
+}
+
+.estadistica{
+    background:var(--white);
+    padding:28px;
+    width:200px;
+    text-align:center;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    transition:.25s;
+}
+
+.estadistica:hover{
+    transform:translateY(-8px);
+}
+
+.estadistica h2{
+    font-family:var(--font-mono);
+    font-size:38px;
+    color:var(--blue);
+    margin-bottom:8px;
+}
+
+.estadistica p{
+    font-size:14px;
+    color:var(--muted);
+    font-weight:600;
+}
+
+/* ================================
+   BENEFICIOS
+================================ */
+
+.beneficios{
+    padding:80px 24px;
+    text-align:center;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.beneficios h2{
+    font-size:clamp(26px, 3.5vw, 38px);
+    margin-bottom:14px;
+}
+
+.beneficios-subtitulo{
+    max-width:700px;
+    margin:0 auto 50px;
+    font-size:16px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.beneficios-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:26px;
+}
+
+.beneficio-card{
+    background:var(--white);
+    padding:32px;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+    transition:.25s;
+    text-align:left;
+}
+
+.beneficio-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 30px rgba(0,0,0,.1);
+}
+
+.beneficio-card h3{
+    margin-bottom:14px;
+    color:var(--blue);
+    font-size:20px;
+}
+
+.beneficio-card p{
+    color:var(--muted);
+    line-height:1.6;
+    font-size:15px;
+}
+
+/* ================================
+   NUEVA ILUSTRACIÓN ISOMÉTRICA (EXACTA A LA IMAGEN)
+================================ */
+
+/* Botón Take a Tour */
+.iso-tour-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    fill: #ffffff;
+    font-weight: 600;
+    text-anchor: middle;
+}
+
+/* Etiquetas sobre los bloques */
+.iso-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    fill: #ffffff;
+    text-anchor: middle;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+/* 1. Bloques Gris/Slate Oscuro (Raw Material & Finished Goods) */
+.iso-slate .top { fill: #64748b; stroke: #334155; stroke-width: 1; }
+.iso-slate .right { fill: #334155; stroke: #334155; stroke-width: 1; }
+.iso-slate .left { fill: #475569; stroke: #334155; stroke-width: 1; }
+
+/* 2. Bloques Gris Medio (CNC Turning, Gear Hobbing, Packaging) */
+.iso-slate-light .top { fill: #94a3b8; stroke: #475569; stroke-width: 1; }
+.iso-slate-light .right { fill: #475569; stroke: #475569; stroke-width: 1; }
+.iso-slate-light .left { fill: #64748b; stroke: #475569; stroke-width: 1; }
+
+/* 3. Bloques Rojos (Carburizing & Temper Oven) */
+.iso-red .top { fill: #ef4444c5; stroke: #ef4444c5; stroke-width: 1; }
+.iso-red .right { fill: #991b1b; stroke: #7f1d1d; stroke-width: 1; }
+.iso-red .left { fill: #ef4444c5; stroke: #ef4444c5; stroke-width: 1; }
+
+/* 4. Bloque Azul Grande (Gear Grinding) */
+.iso-blue-wide .top { fill: #38bdf8; stroke: #0369a1; stroke-width: 1; }
+.iso-blue-wide .right { fill: #0284c7; stroke: #0369a1; stroke-width: 1; }
+.iso-blue-wide .left { fill: #0ea5e9; stroke: #0369a1; stroke-width: 1; }
+
+/* 5. Bloque Amarillo (CMM Lab) */
+.iso-yellow .top { fill: #eab308; stroke: #713f12; stroke-width: 1; }
+.iso-yellow .right { fill: #a16207; stroke: #713f12; stroke-width: 1; }
+.iso-yellow .left { fill: #ca8a04; stroke: #713f12; stroke-width: 1; }
+
+/* 6. Bloques Verdes (Assembly Line) */
+.iso-green .top { fill: #48885fd9; stroke: #14532d; stroke-width: 1; }
+.iso-green .right { fill: #15803d; stroke: #14532d; stroke-width: 1; }
+.iso-green .left { fill: #48885fd9; stroke: #14532d; stroke-width: 1; }
+
+/* 7. Bloque Naranja (Paint Booth) */
+.iso-orange .top { fill: #f97316; stroke: #7c2d12; stroke-width: 1; }
+.iso-orange .right { fill: #c2410c; stroke: #7c2d12; stroke-width: 1; }
+.iso-orange .left { fill: #ea580c; stroke: #7c2d12; stroke-width: 1; }
+
+/* 8. Bloque Oscuro (Shipping Dock) */
+.iso-dark .top { fill: #475569; stroke: #0f172a; stroke-width: 1; }
+.iso-dark .right { fill: #0f172a; stroke: #0f172a; stroke-width: 1; }
+.iso-dark .left { fill: #1e293b; stroke: #0f172a; stroke-width: 1; }
+
+/* Efecto Hover sobre las estaciones */
+.iso-block {
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.iso-block:hover {
+    filter: brightness(1.2);
+    transform: translateY(-3px);
+}
+/* ================================
+   ANIMACIÓN DE FLUJO (líneas punteadas)
+================================ */
+
+.iso-flow{
+    stroke:#64748b;
+    stroke-width:1.4;
+    stroke-dasharray:4 4;
+    animation:iso-flow-move 1.2s linear infinite;
+}
+
+@keyframes iso-flow-move{
+    to{ stroke-dashoffset:-16; }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .iso-flow{ animation:none; }
+}
+
+/* ================================
+   PESTAÑAS DEL HERO (flujo / máquina)
+================================ */
+
+.hero-view-toggle{
+    display:flex;
+    gap:8px;
+    margin-bottom:14px;
+}
+
+.view-pill{
+    background:transparent;
+    border:1px solid #334155;
+    color:#94a3b8;
+    font-family:var(--font-mono);
+    font-size:11px;
+    padding:6px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.view-pill.active{
+    background:var(--blue);
+    border-color:var(--blue);
+    color:white;
+}
+
+.hero-views{ position:relative; }
+
+.hero-view{
+    display:none;
+}
+
+.hero-view.active{
+    display:block;
+}
+
+/* ================================
+   MÁQUINA 3D
+================================ */
+
+.machine-3d-canvas{
+    width:100%;
+    height:300px;
+    border-radius:12px;
+    overflow:hidden;
+    position:relative;
+    cursor:grab;
+}
+
+.machine-3d-canvas:active{ cursor:grabbing; }
+
+.machine-3d-canvas canvas{
+    display:block;
+    width:100%;
+    height:100%;
+}
+
+.machine-hint{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:#94a3b8;
+    text-align:center;
+    margin-top:10px;
+}
+
+/* Panel flotante que aparece al hacer clic en una estación */
+.station-panel{
+    position:absolute;
+    top:14px;
+    right:14px;
+    background:rgba(15,23,42,.92);
+    border:1px solid #334155;
+    border-radius:12px;
+    padding:16px 18px;
+    min-width:180px;
+    display:none;
+    backdrop-filter:blur(6px);
+}
+
+.station-panel.show{ display:block; }
+
+.station-panel-close{
+    position:absolute;
+    top:6px;
+    right:10px;
+    background:none;
+    border:none;
+    color:#94a3b8;
+    font-size:16px;
+    cursor:pointer;
+    line-height:1;
+    padding:2px 6px;
+}
+
+.station-panel-close:hover{ color:white; }
+
+.station-panel-title{
+    display:block;
+    font-family:var(--font-display);
+    font-weight:600;
+    color:white;
+    font-size:15px;
+    margin-bottom:10px;
+}
+
+.station-panel .metric-row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:#cbd5e1;
+    padding:5px 0;
+    border-bottom:1px solid #334155;
+}
+
+.station-panel .metric-row:last-child{ border-bottom:none; }
+
+.station-panel .metric-row span:last-child{
+    color:#38bdf8;
+    font-weight:600;
+}
+
+/* ================================
+   BLOQUE DE ACENTO (Dashboard final)
+================================ */
+
+.iso-accent .top{ fill:#f8fafc; stroke:#0f172a; stroke-width:1.5; }
+.iso-accent .right{ fill:#cbd5e1; stroke:#0f172a; stroke-width:1.5; }
+.iso-accent .left{ fill:#94a3b8; stroke:#0f172a; stroke-width:1.5; }
+
+/* ================================
+   CAMIÓN GENÉRICO (entrada de datos)
+================================ */
+
+.iso-truck-body{ fill:#64748b; stroke:#0f172a; stroke-width:1; }
+.iso-truck-wheel{ fill:#1e293b; stroke:#0f172a; stroke-width:1; }
+
+/* ================================
+   ANIMACIÓN SECUENCIAL TIPO CLIP / REVOLVER
+================================ */
+
+.iso-step {
+    opacity: 0;
+    transform: translateY(-25px);
+    animation: aparecerCaja 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    /* Calcula el retraso de tiempo según el número de paso */
+    animation-delay: calc(var(--order) * 1.0s);
+}
+
+@keyframes aparecerCaja {
+    0% {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Opcional: Reiniciar la animación si el usuario cambia de pestaña y regresa */
+.hero-view.active .iso-step {
+    animation-name: aparecerCaja;
+}

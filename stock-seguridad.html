@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stock de Seguridad | CyberProcess</title>
+
+<link rel="stylesheet" href="index.css">
+
+<header class="site-header">
+
+<div class="logo">
+
+<span class="logo-mark">CP</span>
+
+<span class="logo-text">CyberPro</span>
+
+</div>
+
+
+<nav class="site-nav" id="site-nav">
+
+<a href="index.html">Inicio</a>
+
+<a href="herramientas.html">Herramientas</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="blog.html">Blog</a>
+
+<a href="nosotros.html">Nosotros</a>
+
+<a href="contacto.html">Contacto</a>
+
+</nav>
+
+<a href="dashboard.html" class="btn btn-primary btn-small">Ver Dashboard</a>
+
+<button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">
+<span></span><span></span><span></span>
+</button>
+
+</header>
+
+<section class="calculator">
+
+<h2>Calculadora de Stock de Seguridad</h2>
+
+<p>
+
+Calcula el inventario adicional necesario para cubrir variaciones en la demanda y el tiempo de entrega.
+
+</p>
+
+<div class="calculator-box">
+
+<label>Demanda máxima (unidades/día)</label>
+
+<input
+type="number"
+id="demandaMax"
+placeholder="Ej. 120">
+
+<label>Tiempo máximo de entrega (días)</label>
+
+<input
+type="number"
+id="tiempoMax"
+placeholder="Ej. 6">
+
+<label>Demanda promedio (unidades/día)</label>
+
+<input
+type="number"
+id="demandaProm"
+placeholder="Ej. 100">
+
+<label>Tiempo promedio de entrega (días)</label>
+
+<input
+type="number"
+id="tiempoProm"
+placeholder="Ej. 5">
+
+<button id="calcular">
+
+Calcular
+
+</button>
+
+<h3 id="resultado">
+
+Resultado:
+
+</h3>
+
+<p id="interpretacion">
+
+Esperando cálculo...
+
+</p>
+
+<a href="herramientas.html">
+
+    <button>
+
+        ← Volver a Herramientas
+
+    </button>
+
+</a>
+
+</div>
+
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="dashboard.js"></script>
+<script src="stock-seguridad.js"></script>
+
+</body>
+
+</html>
